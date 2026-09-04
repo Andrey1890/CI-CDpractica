@@ -1,0 +1,8 @@
+github-runner/
+.tools/
+
+# Secretos y configuracion local
+.env
+.env.*
+*.pem
+*.key
