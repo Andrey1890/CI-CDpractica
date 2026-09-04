@@ -18,6 +18,28 @@ body {
   font-family: var(--body);
 }
 
+p { overflow-wrap: break-word; }
+
+img { max-width: 100%; height: auto; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: reveal-up .7s ease-out forwards;
+}
+
+@keyframes reveal-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero { animation-delay: .05s; }
+.story { animation-delay: .15s; }
+footer.reveal { animation-delay: .25s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; opacity: 1; transform: none; }
+}
+
 .page-shell {
   width: min(1180px, calc(100% - 32px));
   margin: 16px auto;
@@ -87,7 +109,10 @@ h1 {
   z-index: 0;
   background: var(--acid);
   content: '';
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1);
 }
+
+.portrait:hover::before { transform: translate(6px, -6px); }
 
 .portrait img {
   position: relative;
@@ -99,6 +124,14 @@ h1 {
   filter: saturate(.82) contrast(1.06);
   border: 12px solid #fff;
   box-shadow: 0 9px 24px rgba(23, 34, 30, .18);
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1);
+}
+
+.portrait:hover img { transform: scale(1.02); }
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait::before, .portrait img { transition: none; }
+  .portrait:hover img { transform: none; }
 }
 
 figcaption {
